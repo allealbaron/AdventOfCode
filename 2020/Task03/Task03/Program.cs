@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Task3
+namespace Task03
 {
     class Program
     {
