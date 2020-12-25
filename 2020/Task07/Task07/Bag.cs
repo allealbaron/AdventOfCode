@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Task7
+namespace Task07
 {
     /// <summary>
     /// Represents Group Response

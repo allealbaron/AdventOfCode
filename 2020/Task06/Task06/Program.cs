@@ -4,15 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Task5
+namespace Task06
 {
     class Program
     {
 
         /// <summary>
-        /// Expenses
+        /// Responses
         /// </summary>
-        static List<BoardingPass> boardingpasses = new List<BoardingPass>();
+        static List<GroupResponse> groupResponses = new List<GroupResponse>();
 
         /// <summary>
         /// First Part
@@ -22,8 +22,7 @@ namespace Task5
            
             Console.WriteLine("First solution:");
 
-            Console.WriteLine("Max Value: {0} ", boardingpasses.Select(p => p.SeatId).Max());
-
+            Console.WriteLine("Sum: {0}", groupResponses.Sum(p => p.Responses.Count));
 
         }
 
@@ -33,20 +32,9 @@ namespace Task5
         static void SecondPart()
         {
 
-            var innerJoin = from b1 in boardingpasses
-                            join noItem in boardingpasses on (b1.SeatId+1) equals noItem.SeatId  into joinList
-                            from subjoin in joinList.DefaultIfEmpty()
-                            from b2 in boardingpasses
-                            where (subjoin == null && b1.SeatId == b2.SeatId-2)
-                            select new { b1, b2, solution = b1.SeatId+1 };
-
             Console.WriteLine("Second solution:");
-            
 
-            foreach (var item in innerJoin)
-            {
-                Console.WriteLine("{0} - {1} - Solution: {2} ", item.b1.SeatId, item.b2.SeatId, item.solution);
-            }
+            Console.WriteLine("Sum: {0}", groupResponses.Sum(p => p.AnsweredByEveryBody.Count));
 
         }
 
@@ -56,8 +44,11 @@ namespace Task5
         /// <param name="fileName">File name</param>
         static void LoadFile(string fileName)
         {
-            boardingpasses = new List<BoardingPass>();
             
+            groupResponses = new List<GroupResponse>();
+
+            GroupResponse gr = new GroupResponse();
+
             const Int32 BufferSize = 128;
             FileStream fs = File.OpenRead(fileName);
             StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
@@ -65,13 +56,29 @@ namespace Task5
 
             while ((line = sr.ReadLine()) != null)
             {
-                boardingpasses.Add(
-                new BoardingPass()
+                if (line.Equals(String.Empty))
                 {
-                    Row = Convert.ToInt32(line.Substring(0, 7).Replace('B', '1').Replace('F', '0'), 2),
-                    Column = Convert.ToInt32(line.Substring(line.Length-3).Replace('R','1').Replace('L','0'), 2)
-                });
+                    groupResponses.Add(gr);
+                    gr = new GroupResponse();
+                }
+                else
+                {
+                    foreach (char c in line)
+                    {
+                        if (gr.Responses.ContainsKey(c))
+                        {
+                            gr.Responses[c]++;
+                        }
+                        else
+                        {
+                            gr.Responses.Add(c, 1);
+                        }
+                    }
+                    gr.Members++;
+                }
             }
+
+            groupResponses.Add(gr);
 
             sr.Close();
             fs.Close();

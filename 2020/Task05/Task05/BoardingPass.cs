@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Task5
+namespace Task05
 {
     /// <summary>
     /// Represents a boarding pass
