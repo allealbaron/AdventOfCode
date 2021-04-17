@@ -5,37 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Task02
+namespace AdventOfCode
 {
-    class Program
+    public class Task02
     {
         /// <summary>
         /// Input
         /// </summary>
-        static List<ChristmasPackage> ChristmasPackages = new List<ChristmasPackage>();
+        private readonly List<ChristmasPackage> ChristmasPackages = new ();
 
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>Value</returns>
+        public int FirstPart()
         {
-            int result = (from c in ChristmasPackages
+            return (from c in ChristmasPackages
                           select c.GetWrapping()).Sum();
-
-            Console.WriteLine("Solution 1: {0}", result);
 
         }
 
         /// <summary>
-        /// Second part
+        /// Second Part
         /// </summary>
-        static void SecondPart()
+        /// <returns>Value</returns>
+        public int SecondPart()
         {
 
-            int result = (from c in ChristmasPackages
+            return (from c in ChristmasPackages
                           select c.GetRibbonLength()).Sum();
-
-            Console.WriteLine("Solution 2: {0}", result);
 
 
         }
@@ -44,17 +42,15 @@ namespace Task02
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private  void LoadFile(string fileName)
         {
-
-            ChristmasPackages = new List<ChristmasPackage>();
 
             const Int32 BufferSize = 128;
             FileStream fs = File.OpenRead(fileName);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
+            StreamReader sr = new (fs, Encoding.UTF8, true, BufferSize);
             String line;
 
-            Regex regex = new Regex(@"(?<Length>^\d+)(x)(?<Width>\d+)(x)(?<Height>\d+)$");
+            Regex regex = new (@"(?<Length>^\d+)(x)(?<Width>\d+)(x)(?<Height>\d+)$");
 
             while ((line = sr.ReadLine()) != null)
             {
@@ -75,23 +71,26 @@ namespace Task02
 
         }
 
+        /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task02(string fileName)
+        {
+            LoadFile(fileName);
+
+        }
+
+        /// <summary>
+        /// Main Thread
+        /// </summary>
         static void Main()
         {
-            List<string> files = new List<string>() { "TestInput.txt", "Input.txt" };
+            Task02 t = new("input.txt");
 
-            foreach (string file in files)
-            {
-                Console.WriteLine("Testing file {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
+            Console.WriteLine("First Part: {0}", t.FirstPart());
 
-                LoadFile(file);
-                FirstPart();
-                SecondPart();
-
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
 
         }
     }

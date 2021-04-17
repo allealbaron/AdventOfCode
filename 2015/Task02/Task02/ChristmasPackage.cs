@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Task02
+namespace AdventOfCode
 {
     /// <summary>
     /// Christmas Package
@@ -14,10 +12,12 @@ namespace Task02
         /// Length
         /// </summary>
         public int Length  { get;set; }
+
         /// <summary>
         /// Width
         /// </summary>
         public int Width { get; set; }
+
         /// <summary>
         /// Height
         /// </summary>
