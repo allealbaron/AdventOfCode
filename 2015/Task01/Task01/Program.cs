@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Task01
+namespace AdventOfCode
 {
-    class Program
+    public class Task01
     {
         /// <summary>
         /// Input
         /// </summary>
-        static string input = String.Empty;
+        public string input = String.Empty;
 
         /// <summary>
         /// Given a char, returns 1 if it is equal to '(',
@@ -18,7 +17,7 @@ namespace Task01
         /// </summary>
         /// <param name="s">char</param>
         /// <returns>1 or -1</returns>
-        static int DecodeSymbol(char s)
+        public static int DecodeSymbol(char s)
         {
             if (s.Equals('('))
             {
@@ -33,23 +32,22 @@ namespace Task01
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>Value</returns>
+        public int FirstPart()
         {
-            int result = (from c in input.ToCharArray().ToList()
+            return (from c in input.ToCharArray().ToList()
                           select DecodeSymbol(c)).Sum();
-
-            Console.WriteLine("Solution 1: {0}", result);
 
         }
 
         /// <summary>
-        /// Second part
+        /// Second Part
         /// </summary>
-        static void SecondPart()
+        /// <returns>Value</returns>
+        public int SecondPart()
         {
 
             int cont = 0;
-
             int i = 0;
 
             while (cont >= 0 && i < input.Length)
@@ -58,36 +56,39 @@ namespace Task01
                 i++;
             }
 
-            Console.WriteLine("Solution 2: {0}", i);
-
+            return i;
+    
         }
 
         /// <summary>
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private void LoadFile(string fileName)
         {
             input = File.ReadAllText(fileName);
         }
 
+        /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task01(string fileName)
+        {
+            LoadFile(fileName);
+
+        }
+
+        /// <summary>
+        /// Main Thread
+        /// </summary>
         static void Main()
         {
-            List<string> files = new List<string>() { "TestInput.txt", "Input.txt" };
+            Task01 t = new("input.txt");
 
-            foreach (string file in files)
-            {
-                Console.WriteLine("Testing file {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
+            Console.WriteLine("First Part: {0}", t.FirstPart());
 
-                LoadFile(file);
-                FirstPart();
-                SecondPart();
-
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
 
         }
     }
