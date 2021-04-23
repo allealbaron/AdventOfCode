@@ -59,8 +59,8 @@
 		<td>2016</td>
 		<td></td>
 		<td></td>
-		<td></td>
-		<td></td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -85,14 +85,14 @@
 	</tr>
 	<tr>
 		<td>2017</td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -114,12 +114,12 @@
 	<tr>
 		<td>2018</td>
 		<td></td>
+		<td>X</td>
 		<td></td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -141,10 +141,10 @@
 	</tr>
 	<tr>
 		<td>2019</td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -169,25 +169,25 @@
 	</tr>
 	<tr>
 		<td>2020</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>X</td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
