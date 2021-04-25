@@ -46,4 +46,4 @@
 <p>Once the program has halted, its output is available at address <code>0</code>, also just like before. Each time you try a pair of inputs, make sure you first <em>reset the computer's memory to the values in the program</em> (your puzzle input) - in other words, don't reuse memory from a previous attempt.</p>
 <p>Find the input <em>noun</em> and <em>verb</em> that cause the program to produce the output <code>19690720</code>. <em>What is <code>100 * noun + verb</code>?</em> (For example, if <code>noun=12</code> and <code>verb=2</code>, the answer would be <code>1202</code>.)</p>
 </article>
-<h2 id="part2">--- Part Two ---</h2>
+<p>Your puzzle answer was <code>6417</code>.</p>
