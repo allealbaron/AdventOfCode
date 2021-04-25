@@ -4,22 +4,22 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Task01
+namespace AdventOfCode
 {
-    class Program
+    public class Task01
     {
 
         /// <summary>
-        /// List of entiries
+        /// List of entries
         /// </summary>
-        static List<int> Entries = new List<int>();
+        private readonly List<int> entries = new();
 
         /// <summary>
         /// Calculates fuel necessary for the first part
         /// </summary>
         /// <param name="mass">Mass</param>
         /// <returns>Fuel necessary</returns>
-        static int CalculateFuelFirstPart(int mass)
+        public static int CalculateFuelFirstPart(int mass)
         {
             return int.Parse(Math.Floor((decimal)(mass / 3)).ToString()) -2;
         }
@@ -29,7 +29,7 @@ namespace Task01
         /// </summary>
         /// <param name="mass">Mass</param>
         /// <returns>Fuel necessary</returns>
-        static int CalculateFuelSecondPart(int mass)
+        public static int CalculateFuelSecondPart(int mass)
         {
 
             int result = 0;
@@ -55,22 +55,22 @@ namespace Task01
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>result</returns>
+        public int FirstPart()
         {
 
-            Console.WriteLine("First solution:");
-            Console.WriteLine("Necessary fuel: {0}", (from t in Entries select CalculateFuelFirstPart(t)).Sum());
+            return (from t in entries select CalculateFuelFirstPart(t)).Sum();
 
         }
 
         /// <summary>
         /// Second part
         /// </summary>
-        static void SecondPart()
+        /// <returns>result</returns>
+        public int SecondPart()
         {
 
-            Console.WriteLine("Second solution:");
-            Console.WriteLine("Necessary fuel: {0}", (from t in Entries select CalculateFuelSecondPart(t)).Sum());
+            return (from t in entries select CalculateFuelSecondPart(t)).Sum();
 
         }
 
@@ -78,19 +78,19 @@ namespace Task01
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private void LoadFile(string fileName)
         {
 
-            Entries = new List<int>();
+            entries.Clear();
 
             const Int32 BufferSize = 128;
             FileStream fs = File.OpenRead(fileName);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
+            StreamReader sr = new (fs, Encoding.UTF8, true, BufferSize);
             String line;
 
             while ((line = sr.ReadLine()) != null)
             {
-                Entries.Add(int.Parse(line));
+                entries.Add(int.Parse(line));
             }
 
             sr.Close();
@@ -99,25 +99,27 @@ namespace Task01
         }
 
         /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task01(string fileName)
+        {
+
+            LoadFile(fileName);
+
+        }
+
+        /// <summary>
         /// Main Thread
         /// </summary>
         static void Main()
         {
-            List<string> files = new List<string>() { "TestInput.txt" , "Input.txt" };
 
-            foreach (string file in files)
-            {
-                Console.WriteLine("Testing file {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
+            Task01 t = new("input.txt");
 
-                LoadFile(file);
-                FirstPart();
-                SecondPart();
+            Console.WriteLine("First Part: {0}", t.FirstPart());
 
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
 
         }
     }
