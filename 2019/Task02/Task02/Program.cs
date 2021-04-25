@@ -1,45 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
-namespace Task02
+namespace AdventOfCode
 {
-    class Program
+    public class Task02
     {
 
         /// <summary>
         /// List of entiries
         /// </summary>
-        static List<int> Entries = new List<int>();
-
+        private readonly List<int> entries = new();
 
         /// <summary>
         /// Computes First Part
         /// </summary>
         /// <returns>Value stored at position 0</returns>
-        static int ComputeFirstPart()
+        public int ComputeFirstPart()
         {
 
             int i = 0;
 
-            while (Entries[i] != 99)
+            while (entries[i] != 99)
             {
-                switch (Entries[i])
+                switch (entries[i])
                 {
                     case 1:
-                        Entries[Entries[i + 3]] = (Entries[Entries[i + +1]] + Entries[Entries[i + 2]]);
+                        entries[entries[i + 3]] = (entries[entries[i + +1]] + entries[entries[i + 2]]);
                         i += 4;
                         break;
                     case 2:
-                        Entries[Entries[i + 3]] = (Entries[Entries[i + +1]] * Entries[Entries[i + 2]]);
+                        entries[entries[i + 3]] = (entries[entries[i + +1]] * entries[entries[i + 2]]);
                         i += 4;
                         break;
                 }
             }
 
-            return Entries[0];
+            return entries[0];
 
         }
 
@@ -47,7 +45,7 @@ namespace Task02
         /// Computes Second Part
         /// </summary>
         /// <returns>Result</returns>
-        static int ComputeSecondPart()
+        public int ComputeSecondPart()
         {
             const int GOAL = 19690720;
 
@@ -59,8 +57,8 @@ namespace Task02
             {
                 LoadFile("Input.txt");
 
-                Entries[1] = noun;
-                Entries[2] = verb;
+                entries[1] = noun;
+                entries[2] = verb;
 
                 result = ComputeFirstPart();
 
@@ -85,22 +83,22 @@ namespace Task02
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>Value</returns>
+        public int FirstPart()
         {
 
-            Console.WriteLine("First solution:");
-            Console.WriteLine("Value at position 0: {0}", ComputeFirstPart());
+            return ComputeFirstPart();
 
         }
 
         /// <summary>
         /// Second part
         /// </summary>
-        static void SecondPart()
+        /// <returns>Value</returns>
+        public int SecondPart()
         {
 
-            Console.WriteLine("Second solution:");
-            Console.WriteLine("Answer: {0}", ComputeSecondPart());
+            return ComputeSecondPart();
 
         }
 
@@ -108,21 +106,21 @@ namespace Task02
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private void LoadFile(string fileName)
         {
 
-            Entries = new List<int>();
+            entries.Clear();
 
             const Int32 BufferSize = 128;
             FileStream fs = File.OpenRead(fileName);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
+            StreamReader sr = new (fs, Encoding.UTF8, true, BufferSize);
             String line;
 
             line = sr.ReadLine();
 
             foreach( string s in line.Split(","))
             { 
-                Entries.Add(int.Parse(s));
+                entries.Add(int.Parse(s));
             }
 
             sr.Close();
@@ -131,38 +129,35 @@ namespace Task02
         }
 
         /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task02(string fileName)
+        {
+
+            LoadFile(fileName);
+
+            if (fileName.ToLower().Equals("input.txt"))
+            {
+                entries[1] = 12;
+                entries[2] = 2;
+            }
+
+        }
+
+        /// <summary>
         /// Main Thread
         /// </summary>
         static void Main()
         {
-            List<string> files = new List<string>() { "TestInput.txt" , "TestInput2.txt", "TestInput3.txt", 
-                                                       "TestInput4.txt", "TestInput5.txt", "Input.txt" };
 
-            foreach (string file in files)
-            {
-                Console.WriteLine("Testing file {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
+            Task02 t = new("input.txt");
 
-                LoadFile(file);
+            Console.WriteLine("First Part: {0}", t.FirstPart());
 
-                if (file == "Input.txt")
-                {
-                    Entries[1] = 12;
-                    Entries[2] = 2;
-                }
-
-                FirstPart();
-
-                if (file == "Input.txt")
-                {
-                    SecondPart();
-                }
-
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
 
         }
+
     }
 }
