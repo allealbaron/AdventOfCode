@@ -1,36 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
-namespace Task02
+namespace AdventOfCode
 {
     public class PasswordPolicy
     {
         /// <summary>
         /// Minimum value
         /// </summary>
-        public int MinValue;
+        public int MinValue { get; set; }
 
         /// <summary>
         /// Maximum value
         /// </summary>
-        public int MaxValue;
+        public int MaxValue { get; set; }
 
         /// <summary>
         /// Character to check
         /// </summary>
-        public char Character;
+        public char Character { get; set; }
 
         /// <summary>
         /// Password
         /// </summary>
-        public string PassWord;
+        public string PassWord { get; set; }
 
         /// <summary>
-        /// Checks if the item is
+        /// Checks if the item is valid for the first part
         /// </summary>
-        /// <param name="input">String to check</param>
         /// <returns>Returns value</returns>
         public bool IsValidFirstPart()
         {
@@ -41,6 +37,10 @@ namespace Task02
 
         }
 
+        /// <summary>
+        /// Checks if the item is valid for the second part
+        /// </summary>
+        /// <returns>Returns value</returns>
         public bool IsValidSecondPart()
         {
             return (this.PassWord[this.MinValue-1] == this.Character ^

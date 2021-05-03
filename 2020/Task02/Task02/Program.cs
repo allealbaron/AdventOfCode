@@ -5,58 +5,52 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Task02
+namespace AdventOfCode
 {
-    class Program
+    public class Task02
     {
 
         /// <summary>
         /// Expenses
         /// </summary>
-        static List<PasswordPolicy> passwords = new List<PasswordPolicy>();
+        private readonly List<PasswordPolicy> passwords = new();
 
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>Solution</returns>
+        public int FirstPart()
         {
-
-
-           Console.WriteLine("First solution:");
-
-           Console.WriteLine("Ok items: {0}", passwords.Where(t=> t.IsValidFirstPart()).Count());
+            return passwords.Where(t => t.IsValidFirstPart()).Count();
         }
 
         /// <summary>
-        /// Second part
+        /// Second Part
         /// </summary>
-        static void SecondPart()
+        /// <returns>Solution</returns>
+        public int SecondPart()
         {
-
-            Console.WriteLine("Second solution:");
-
-            Console.WriteLine("Ok items: {0}", passwords.Where(t => t.IsValidSecondPart()).Count());
-
+            return passwords.Where(t => t.IsValidSecondPart()).Count();
         }
 
         /// <summary>
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private void LoadFile(string fileName)
         {
 
             if (File.Exists(fileName))
-                {
+            {
 
-                passwords = new List<PasswordPolicy>();
+                passwords.Clear();
 
                 const Int32 BufferSize = 128;
                 FileStream fs = File.OpenRead(fileName);
-                StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
+                StreamReader sr = new (fs, Encoding.UTF8, true, BufferSize);
                 String line;
 
-                Regex regExpression = new Regex(@"(\d+)-(\d+)\s(\D):\s([0-9a-z]+)");
+                Regex regExpression = new (@"(\d+)-(\d+)\s(\D):\s([0-9a-z]+)");
 
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -79,24 +73,28 @@ namespace Task02
 
         }
 
-        static void Main()
+        /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task02(string fileName)
         {
-            List<string> files = new List<string>() { "TestInput.txt", "Input.txt" };
-
-            foreach (string file in files)
-            {
-                Console.WriteLine("Probando fichero {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
-
-                LoadFile(file);
-                FirstPart();
-                SecondPart();
-
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            LoadFile(fileName);
 
         }
+
+        /// <summary>
+        /// Main Thread
+        /// </summary>
+        static void Main()
+        {
+            Task02 t = new("input.txt");
+
+            Console.WriteLine("First Part: {0}", t.FirstPart());
+
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
+
+        }
+
     }
 }
