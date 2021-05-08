@@ -4,24 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Task03
+namespace AdventOfCode
 {
-    class Program
+    public class Task03
     {
 
         /// <summary>
-        /// Expenses
+        /// Lines
         /// </summary>
-        static List<string> lines = new List<string>();
-
+        private readonly List<string> lines = new();
 
         /// <summary>
-        /// Calculates how many trees does the user hit
+        /// Calculates how many trees does the user hits
         /// </summary>
         /// <param name="horizontalMoves">Horizontal moves</param>
         /// <param name="verticalMoves">Vertical moves</param>
-        /// <returns></returns>
-        static int MoveThroughForest(int horizontalMoves, int verticalMoves)
+        /// <returns>Number of trees the user hits</returns>
+        public int MoveThroughForest(int horizontalMoves, int verticalMoves)
         {
             int result = 0;
             int j = 0;
@@ -41,22 +40,20 @@ namespace Task03
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>result</returns>
+        public int FirstPart()
         {
-
-            Console.WriteLine("First solution:");
-
-            Console.WriteLine("Resultado : {0}", MoveThroughForest(3,1));
-
+            return MoveThroughForest(3,1);
         }
 
         /// <summary>
         /// Second part
         /// </summary>
-        static void SecondPart()
+        /// <returns>result</returns>
+        public uint SecondPart()
         {
           
-            List<(int, int)> parameters = new List<(int, int)>
+            List<(int, int)> parameters = new()
             {
                 (1, 1),
                 (3, 1),
@@ -65,10 +62,8 @@ namespace Task03
                 (1, 2)
             };
 
-            Console.WriteLine("Second solution:");
-
-            Console.WriteLine("Resultado : {0}", parameters.Select(tuple => MoveThroughForest(tuple.Item1, tuple.Item2))
-                                    .Aggregate((uint)1, (acc, val) => (uint)acc * (uint)val).ToString());
+            return (parameters.Select(tuple => MoveThroughForest(tuple.Item1, tuple.Item2))
+                                    .Aggregate((uint)1, (acc, val) => (uint)acc * (uint)val));
          
         }
 
@@ -76,13 +71,13 @@ namespace Task03
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private void LoadFile(string fileName)
         {
-            lines = new List<string>();
+            lines.Clear();
             
             const Int32 BufferSize = 128;
             FileStream fs = File.OpenRead(fileName);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
+            StreamReader sr = new (fs, Encoding.UTF8, true, BufferSize);
             String line;
 
             while ((line = sr.ReadLine()) != null)
@@ -96,24 +91,28 @@ namespace Task03
 
         }
 
-        static void Main()
+        /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task03(string fileName)
         {
-            List<string> files = new List<string>() { "TestInput.txt", "Input.txt" };
-
-            foreach (string file in files)
-            {
-                Console.WriteLine("Probando fichero {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
-
-                LoadFile(file);
-                FirstPart();
-                SecondPart();
-
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            LoadFile(fileName);
 
         }
+
+        /// <summary>
+        /// Main Thread
+        /// </summary>
+        static void Main()
+        {
+            Task03 t = new("input.txt");
+
+            Console.WriteLine("First Part: {0}", t.FirstPart());
+
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
+
+        }
+
     }
 }
