@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using AdventOfCode;
 
-namespace TestProjectTask02
+namespace TestProjectTask03
 {
     public class Tests
     {

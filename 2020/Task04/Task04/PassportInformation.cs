@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Task04
+namespace AdventOfCode
 {
     /// <summary>
     /// Class which represents passport information
     /// </summary>
-    class PassportInformation
+    public class PassportInformation
     {
         /// <summary>
         /// Categories
@@ -126,7 +126,7 @@ namespace Task04
         /// <returns>True if the <paramref name="value"/> is between <paramref name="minValue"/> 
         /// and <paramref name="maxValue"/>
         /// </returns>
-        private bool ValidateNumber(int value, int minValue, int maxValue)
+        private static bool ValidateNumber(int value, int minValue, int maxValue)
         {
             return (value >= minValue && value <= maxValue);
         }
@@ -146,7 +146,7 @@ namespace Task04
         /// <returns>True if passport id is a nine digit number</returns>
         private bool ValidatePassportId()
         {
-            Regex regexPassportId = new Regex(@"^([0-9]{9})$");
+            Regex regexPassportId = new(@"^([0-9]{9})$");
 
             return regexPassportId.IsMatch(this.PassportId);
 
@@ -158,7 +158,7 @@ namespace Task04
         /// <returns>True if hair color is a hexadecimal color</returns>
         private bool ValidateHairColor()
         {
-            Regex regexPassportId = new Regex(@"#([0-9a-f]){6}");
+            Regex regexPassportId = new(@"#([0-9a-f]){6}");
 
             return regexPassportId.IsMatch(this.HairColor);
 
@@ -171,7 +171,7 @@ namespace Task04
         /// it is in inches and between 59-76</returns>
         private bool ValidateHeight()
         {
-            string unit = this.Height.Substring(this.Height.Length- 2);
+            string unit = Height[(Height.Length- 2)..];
             int minValue, maxValue;
 
             if (unit.ToLower().Equals("cm"))

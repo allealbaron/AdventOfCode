@@ -3,57 +3,49 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
-namespace Task04
+namespace AdventOfCode
 {
-    class Program
+    public class Task04
     {
 
         /// <summary>
         /// List of PassportInformation
         /// </summary>
-        static List<PassportInformation> passports = new List<PassportInformation>();
+        private readonly List<PassportInformation> passports = new();
 
         /// <summary>
         /// First Part
         /// </summary>
-        static void FirstPart()
+        /// <returns>result</returns>
+        public int FirstPart()
         {
-         
-            Console.WriteLine("First solution:");
-            Console.WriteLine("Valid passwords: {0}", passports.Where(p => p.IsValid()).Count());
-
+            return passports.Where(p => p.IsValid()).Count();
         }
 
         /// <summary>
         /// Second part
         /// </summary>
-        static void SecondPart()
+        /// <returns>result</returns>
+        public int SecondPart()
         {
-
-            var x = passports.Where(p => p.IsValidSecondPart()).ToList();
-
-
-            Console.WriteLine("Second solution:");
-            Console.WriteLine("Valid passwords: {0}", passports.Where(p => p.IsValidSecondPart()).Count());
-
+            return passports.Where(p => p.IsValidSecondPart()).Count();
         }
 
         /// <summary>
         /// Loads file
         /// </summary>
         /// <param name="fileName">File name</param>
-        static void LoadFile(string fileName)
+        private void LoadFile(string fileName)
         {
-            passports = new List<PassportInformation>();
+            passports.Clear();
             
             const Int32 BufferSize = 128;
             FileStream fs = File.OpenRead(fileName);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize);
+            StreamReader sr = new(fs, Encoding.UTF8, true, BufferSize);
             String line;
 
-            PassportInformation pi = new PassportInformation();
+            PassportInformation pi = new();
 
             while ((line = sr.ReadLine()) != null)
             {
@@ -109,23 +101,25 @@ namespace Task04
 
         }
 
+        /// <summary>
+        /// Class creator
+        /// </summary>
+        /// <param name="fileName">File to load</param>
+        public Task04(string fileName)
+        {
+            LoadFile(fileName);
+        }
+
+        /// <summary>
+        /// Main Thread
+        /// </summary>
         static void Main()
         {
-            List<string> files = new List<string>() { "TestInput.txt", "Input.txt" };
+            Task04 t = new("input.txt");
 
-            foreach (string file in files)
-            {
-                Console.WriteLine("Testing file {0}", file);
-                Console.WriteLine();
-                Console.WriteLine();
+            Console.WriteLine("First Part: {0}", t.FirstPart());
 
-                LoadFile(file);
-                FirstPart();
-                SecondPart();
-
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            Console.WriteLine("Second Part: {0}", t.SecondPart());
 
         }
     }
