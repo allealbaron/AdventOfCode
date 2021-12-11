@@ -207,7 +207,7 @@
 		<td>X</td>
 		<td>X</td>
 		<td>X</td>
-		<td></td>
+		<td>X</td>
 		<td></td>
 		<td></td>
 		<td></td>
