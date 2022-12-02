@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using AdventOfCode.Year2021;
+using AdventOfCode.Year2022;
 
 namespace TestProjectTask02
 {
@@ -12,9 +12,9 @@ namespace TestProjectTask02
 
             string file = "TestInput.txt";
 
-            Task01 t = new(file);
+            Task02 t = new(file);
 
-            Assert.AreEqual(t.FirstPart(), 24000);
+            Assert.AreEqual(t.FirstPart(), 15);
 
         }
 
@@ -24,9 +24,9 @@ namespace TestProjectTask02
 
             string file = "Input.txt";
 
-            Task01 t = new(file);
+            Task02 t = new(file);
 
-            Assert.AreEqual(t.FirstPart(), 66306);
+            Assert.AreEqual(t.FirstPart(), 8392);
 
         }
 
@@ -36,9 +36,9 @@ namespace TestProjectTask02
 
             string file = "TestInput.txt";
 
-            Task01 t = new(file);
+            Task02 t = new(file);
 
-            Assert.AreEqual(t.SecondPart(), 45000);
+            Assert.AreEqual(t.SecondPart(), 12);
 
         }
 
@@ -48,9 +48,9 @@ namespace TestProjectTask02
 
             string file = "Input.txt";
 
-            Task01 t = new(file);
+            Task02 t = new(file);
 
-            Assert.AreEqual(t.SecondPart(), 195292);
+            Assert.AreEqual(t.SecondPart(), 10116);
 
         }
 

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AdventOfCode.Year2021
+namespace AdventOfCode.Year2022
 {
     public class Task01
     {
