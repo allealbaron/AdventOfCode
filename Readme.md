@@ -226,6 +226,7 @@
 	</tr>
 	<tr>
 		<td>2022</td>
+<<<<<<< HEAD
 		<td><a href="/2022/Task01" target="_blank">X</a></td>
 		<td><a href="/2022/Task02" target="_blank">X</a></td>
 		<td><a href="/2022/Task03" target="_blank">X</a></td>
@@ -233,6 +234,15 @@
 		<td><a href="/2022/Task05" target="_blank">X</a></td>
 		<td><a href="/2022/Task06" target="_blank">X</a></td>
 		<td><a href="/2022/Task07" target="_blank">X</a></td>
+=======
+		<td><a href="/2021/Task01" target="_blank">X</a></td>
+		<td><a href="/2021/Task02" target="_blank">X</a></td>
+		<td><a href="/2021/Task03" target="_blank">X</a></td>
+		<td><a href="/2021/Task04" target="_blank">X</a></td>
+		<td><a href="/2021/Task05" target="_blank">X</a></td>
+		<td><a href="/2021/Task06" target="_blank">X</a></td>
+		<td><a href="/2021/Task07" target="_blank">X</a></td>
+>>>>>>> 31bfccc211cdff2a7121f98cbfa3e74199c98a09
 		<td></td>
 		<td></td>
 		<td></td>
