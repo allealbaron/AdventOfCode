@@ -235,7 +235,7 @@
 		<td><a href="/2022/Task07" target="_blank">X</a></td>
 		<td><a href="/2022/Task08" target="_blank">X</a></td>
 		<td></td>
-		<td></td>
+		<td><a href="/2022/Task10" target="_blank">X</a></td>
 		<td></td>
 		<td></td>
 		<td></td>
