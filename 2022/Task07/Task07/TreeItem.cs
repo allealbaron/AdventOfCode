@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AdventOfCode.Year2022
 {
@@ -26,9 +27,24 @@ namespace AdventOfCode.Year2022
             }
         }
 
+        public string GetPath()
+        {
+            var result = Name;
+
+            var tempItem = Parent;
+
+            while (tempItem != null)
+            {
+                result = tempItem.Name + "/" + result;
+                tempItem = tempItem.Parent;
+            }
+
+            return result.ToString();
+        }
+
         public override string ToString()
         {
-            return ($"{Name}: {Size}");
+            return ($"{Name}: {Size} {GetPath()}");
         }
 
     }
