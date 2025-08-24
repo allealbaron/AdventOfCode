@@ -311,7 +311,7 @@
 	<tr>
 		<td>2024</td>
 		<td><a href="/2024/Task01" target="_blank">X</a></td>
-		<td></td>
+		<td><a href="/2024/Task02" target="_blank">X</a></td>
 		<td></td>
 		<td></td>
 		<td></td>
